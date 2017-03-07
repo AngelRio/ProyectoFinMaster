@@ -1,0 +1,9 @@
+#Iniciar un agente flume
+
+$sudo flume-ng agent \
+     --conf /etc/fume-ng/conf \
+     --conf-file /path/t/flumeAgent.conf \
+     --name agent1 \
+     -Dflume.rot.logger=INFO, console
+     
+     

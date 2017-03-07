@@ -1,0 +1,17 @@
+
+agent1.sources = sFileEvents
+agent1.sinks = kHdfs
+agent1.channels = chKafka
+
+agent1.sources.sFileEvents.type = spooldir
+agent1.sources.sFileEvents.spoolDir = /home/cloudera/master/recomendador/datasets
+agent1.sources.sFileEvents.channels = chKafka
+
+agent1.channels.chKafka.type = "org.apache.flume.channel.kafka.KafkaChannel"
+agent1.channels.chKafka.kafka.bootstrap.servers = localhost:9092
+agent1.channels.chKafka.kafka.topic = in_eventos
+
+agent1.sinks.kHdfs.type = hdfs
+agent1.sinks.kHdfs.channel = chKafka
+agent1.sinks.kHdfs.hdfs.path = /master/pragsis/recomendador/%y-%m-%d
+

@@ -1,0 +1,23 @@
+Vamos a probar las métricas que nos deja Kafka para monitorizar. Antes de empezar,
+tendremos que tener claro cuál es el puerto que está configurado en nuestro Kafka para la
+recepción de métricas jmx. Para ello, iremos al Cloudera Manager, elegiremos el servicio Kafka,
+y en la configuración buscaremos la referencia a jmx ("jmx_port"). Una vez la hayamos
+encontrado, miraremos que puerto es el que escuchara el broker para las métricas. Después,
+abriremos una consola y lanzaremos jconsole.
+En jconsole, abriremos una conexión remota al broker (como estamos en la máquina virtual
+realmente será una conexión local), al puerto configurado para jmx (el puerto mirado
+anteriormente, que por defecto debería ser el 9393). Lanzamos la conexión remota y ya
+estaremos conectados al servidor Kafka.
+El jconsole, nos ofrecerá multitud de información del proceso java. En este caso, nos
+interesarán los MBeans que crea Kafka para monitorizar. Nos iremos a la pestaña de MBeans, y
+desplegaremos los beans de Kafka.server y nos centraremos en la métrica MessageInPerSec.
+Esta métrica nos ofrece el número de mensajes que entran en el sistema, y además nos
+desglosa estos mensajes también a nivel de topic.
+Observa esta métrica, que pasa si lanzamos nuestro productor y refrescamos dichas métricas.
+Vamos ahora a probar las métricas de los clientes. Iniciaremos un consumidor y a través del
+jconsole accederemos a él. Como el consumidor es un proceso nuestro, nos debería aparecer
+la clase que lanza el consumidor en la lista de jconsole.
+Una vez entremos en sus métricas JMX, podremos ver por ejemplo la métrica consumer-fecth-
+manager-metrics, donde si no hemos producido recientemente veremos las métricas de
+records consumidos tendiendo a 0. Si probamos a producir en el topic que está escuchando
+nuestro consumidor, veremos cómo esta métrica subirá.

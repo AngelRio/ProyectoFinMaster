@@ -1,0 +1,6 @@
+# Lanzar aplicación en local
+./bin/spark-submit \
+  --class org.pragsis.proyecto \
+  --master local[*] \
+  /master/proyecto/rawToCleanData.jar \
+  100

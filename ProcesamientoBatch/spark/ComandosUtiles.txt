@@ -4,3 +4,6 @@
   --master local[*] \
   /master/proyecto/rawToCleanData.jar \
   100
+
+#Lanzar un script desde la shell
+spark-shell -i rawToCleanData.scala

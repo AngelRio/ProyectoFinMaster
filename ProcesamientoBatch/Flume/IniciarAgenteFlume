@@ -7,3 +7,15 @@ $sudo flume-ng agent \
      -Dflume.rot.logger=INFO, console
      
      
+#Channel memory
+
+Agent.channels.ch1.type = memory
+Agent.channels.ch1.capacity = 1000
+Agent.channels.ch1.transactionCapacity = 100
+
+
+#Sink Logger
+
+Agent.sinks.kHdfs.type = logger
+Agent.sinks.kHdfs.channel = chKafka
+

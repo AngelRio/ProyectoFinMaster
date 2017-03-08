@@ -12,8 +12,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 public class Productor {
 	 public static void main(String[] args) {
 		 
-		 Properties props = new Properties();
-		 //Servidor de Kafka
+	     Properties props = new Properties();
+	     //Servidor de Kafka
 	     props.put("bootstrap.servers", "localhost:9092");
 	     props.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");	    	      
 	     props.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
@@ -30,7 +30,7 @@ public class Productor {
 	    Charset charset = Charset.forName("US-ASCII");
 		try (BufferedReader reader = Files.newBufferedReader(file, charset)) {
 		    
-		    String event, userId, timestamp, artistId, artistName, trackId, trackName
+		    String event, userId, timestamp, artistId, artistName, trackId, trackName;
 		    event = userId = timestamp = artistId= artistName = trackId = trackName = null;
 		    
 		    while ((event = reader.readLine()) != null) {

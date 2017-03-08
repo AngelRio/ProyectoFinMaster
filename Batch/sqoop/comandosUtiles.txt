@@ -1,9 +1,0 @@
-#Importar datos desde MySQL a HDFS sin clave primaria
-sqoop import -connect jdbc:mysql://localhost:3306/practica -username root -password cloudera --table prueba --target-dir /master/proyecto/raw  -m 1
-
-#Importar en todas las columnas de HBase. Tabla origen con clave primaria.
-sqoop import --connect jdbc:mysql://localhost:3306/practica --username root --password cloudera --table prueba --hbase-table prueba  --column-family cf1 --hbase-create-table
-
-#Import algunas columnas
-sqoop import --connect jdbc:mysql://localhost:3306/practica --username root --password root --table prueba --hbase-table prueba --columns column1,column2 --column-family cf1 --hbase-create-table
-

@@ -1,16 +1,18 @@
-agent1.sources = sFileEvents
-agent1.sinks = kHdfs
-agent1.channels = chKafka
+flAgent.sources = sFileEvents
+flAgent.sinks = kHdfs
+flAgent.channels = chKafka
 
-agent1.sources.sFileEvents.type = spooldir
-agent1.sources.sFileEvents.spoolDir = /home/cloudera/master/recomendador/datasets
-agent1.sources.sFileEvents.channels = chKafka
+flAgent.sources.sFileEvents.type = spooldir
+flAgent.sources.sFileEvents.spoolDir = /home/cloudera/master/recomendador/datasets
+flAgent.sources.sFileEvents.channels = chKafka
 
-agent1.channels.chKafka.type = "org.apache.flume.channel.kafka.KafkaChannel"
-agent1.channels.chKafka.kafka.bootstrap.servers = localhost:9092
-agent1.channels.chKafka.kafka.topic = in_eventos
+flAgent.channels.chKafka.type = org.apache.flume.channel.kafka.KafkaChannel
+flAgent.channels.chKafka.kafka.bootstrap.servers = localhost:9092
+flAgent.channels.chKafka.kafka.topic = in_eventos
 
-agent1.sinks.kHdfs.type = hdfs
-agent1.sinks.kHdfs.channel = chKafka
-agent1.sinks.kHdfs.hdfs.path = /master/pragsis/recomendador/%y-%m-%d
+flAgent.sinks.kHdfs.type = hdfs
+flAgent.sinks.kHdfs.channel = chKafka
+flAgent.sinks.kHdfs.hdfs.path = hdfs://quickstart.cloudera:8020/master/pragsis/recomendador/%y-%m-%d
+flAgent.sinks.kHdfs.hdfs.useLocalTimeStamp = true
 
+# "flAgent.sinks.kHdfs.hdfs.useLocalTimeStamp = true" Use the local time (instead of the timestamp from the event header) while replacing the escape sequences.
